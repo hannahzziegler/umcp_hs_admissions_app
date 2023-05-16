@@ -1,2 +1,2 @@
-# umcp_hs_admissions_app
+# University of Maryland College Park High School Admissions App
 A repository for work on my final project in news apps: an interactive that displays applications and admissions to the University of Maryland - College Park from every high school in the state.
