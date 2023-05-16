@@ -1,0 +1,110 @@
+---
+title: "news_app"
+output: html_document
+date: "2023-05-15"
+---
+
+```{r setup, include=FALSE}
+
+# Turn off scientific notation
+options(scipen=999)
+
+# Load libraries
+library(tidyverse)
+library(janitor)
+library(leaflet)
+library(data.table)
+library(readxl)
+
+```
+
+## R Markdown
+
+```{r}
+
+maryland_hs_geocoded <- read_csv("maryland_hs_geocoded.csv")
+
+maryland_hs_geocoded <- maryland_hs_geocoded %>%
+  clean_names()
+
+maryland_hs_geocoded %>%
+  filter(str_detect(name, "High"))
+
+maryland_high_schools_admissions <- read_csv("maryland_high_schools.csv")
+
+
+# Pivoting longer
+high_schools_long <- maryland_high_schools_admissions %>% 
+  pivot_longer(cols = ends_with(c("2013_2014", "2014_15", "2015_16", "2016_17", "2017_18", "2018_19", "2019_20", "2020_21", "2021_22", "2022_23")),
+               names_to = "year",
+               values_to = c("admitted", "applied"))
+
+admitted_pivot <- maryland_high_schools_admissions %>% 
+  pivot_longer(cols = starts_with(c("admitted")),
+               names_to = "year",
+               values_to = c("admitted")) %>%
+  select(id, school, state, year, admitted)
+
+applied_pivot <- maryland_high_schools_admissions %>% 
+  pivot_longer(cols = starts_with(c("applied")),
+               names_to = "year",
+               values_to = c("applied")) %>%
+  select(id, school, state, year, applied)
+
+
+
+applied_pivot <- applied_pivot %>% 
+  mutate(year = str_remove(year, "applied_")) %>%
+  mutate(year = str_replace(year, "_", "-"))
+
+
+admitted_pivot <- admitted_pivot %>% 
+  mutate(year = str_remove(year, "admitted_")) %>%
+  mutate(year = str_replace(year, "_", "-"))
+
+pivoted_yas <- left_join(applied_pivot, admitted_pivot, by=c("school", "year", "id", "state"))
+
+pivoted_yas <- pivoted_yas %>%
+  select(id.x, school, state.x, year, applied, admitted)
+
+pivoted_yas <- pivoted_yas %>%
+  rename(id = id.x, state = state.x)
+
+pivoted_yas %>%
+  mutate(year = str_remove(year, "admitted_")) %>%
+  mutate(year = str_replace(year, "_", "-"))
+
+write_csv(applied_pivot, "applied_fixed.csv")
+write_csv(admitted_pivot, "admitted_fixed.csv")
+
+
+
+```
+
+
+```{r}
+
+final_geocode <- read_csv("final_md_geocoded.csv")
+final_admitted_applied <- read_csv("final_md_admitted_applied.csv")
+
+join_of_the_century <- left_join(final_admitted_applied, final_geocode, by=c("school"))
+
+join_of_the_century <- join_of_the_century %>%
+  select(id, school, year, applied, admitted, lat, lon, city, county, state.x, zip)
+
+join_of_the_century <- join_of_the_century %>%
+  rename(state = state.x)
+
+final_dataframe <- write_csv(join_of_the_century, "final_admissions_df.csv")
+
+forgot_school_type <- read_csv("private_schools.csv")
+
+mayhaps_this_works <- left_join(final_dataframe, forgot_school_type, by=c("school"))
+
+mayhaps_this_works$classification <- mayhaps_this_works$classification %>% replace_na('public')
+
+complete_data <- write_csv(mayhaps_this_works, "final_school_data.csv")
+
+```
+
+
