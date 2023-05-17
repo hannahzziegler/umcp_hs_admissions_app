@@ -56,25 +56,35 @@ def index():
     # markers + popups
     for index, row in high_schools.iterrows():
         if pd.notnull(row["lat"]) and pd.notnull(row["lon"]):
-            folium.CircleMarker(
-                location=[row["lat"], row["lon"]],
-                radius=4,
-                color=high_schools_colors[row["classification"]],
-                fill=True,
-                fill_color=high_schools_colors[row["classification"]],
-                fill_opacity = 0.5,
-                popup = f"<b>School:</b> {row['school']}<br><b>Applied:</b> {row['applied']}<br><b>Admitted:</b> {row['admitted']}<br><b>Acceptance Rate:</b> {row['acceptance_rate']} <b>County:</b> {row['county']}", max_width=300).add_to(folium_map)
+            admission_data = high_schools.loc[high_schools['school'] == row['school']]
+            admission_data = admission_data.loc[admission_data['year'] == '2022-23']
+            
+            if not admission_data.empty:
+                admission_row = admission_data.iloc[0]
+                
+                folium.CircleMarker(
+                    location=[row["lat"], row["lon"]],
+                    radius=4,
+                    color=high_schools_colors[row["classification"]],
+                    fill=True,
+                    fill_color=high_schools_colors[row["classification"]],
+                    fill_opacity=0.5,
+                    popup=f"<b>School:</b> {row['school']}<br><b>Applied:</b> {admission_row['applied']}<br><b>Admitted:</b> {admission_row['admitted']}<br><b>Acceptance Rate:</b> {admission_row['acceptance_rate']} <b>County:</b> {row['county']}",
+                    max_width=300
+                ).add_to(folium_map)
 
     # legend
-    legend_css = """
-<style>
-    .leaflet-control-attribution {
-        background-color: transparent;
-        height: auto;
-        line-height: normal;
-    }
-</style>
-"""
+    legend_html = """
+    <div style="position: absolute; top: 10px; right: 10px; width: 150px; height: 90px;
+                border:2px solid white; z-index:9999; font-size:12px;
+                background-color: rgba(255, 255, 255, 0.75); font-family: 'Source Sans Pro', sans-serif;
+                ">
+    <div style='font-weight: bold; padding: 2px;'>School Type</div>
+    <p style="margin:10px"><span style='background-color:#A5D6D9'>&nbsp;&nbsp;&nbsp;&nbsp;</span> Public</p>
+    <p style="margin:10px"><span style='background-color:#DD8627'>&nbsp;&nbsp;&nbsp;&nbsp;</span> Private</p>
+    </div>
+    """
+    folium_map.get_root().html.add_child(folium.Element(legend_html))
 
     counties = [
             "Allegany County",
@@ -131,13 +141,18 @@ def index():
         if current_school:
             results.append((current_school, current_school_results))
 
+        if search_term:
+            high_schools = high_schools[high_schools['school'].str.contains(search_term, case=False)]
+        elif county_filter:
+            high_schools = high_schools[high_schools['county'] == county_filter]
+
     else:
         results = None
         search_term = None
         county_filter = None
             # Query database for data based on search term
 
-    return render_template('index.html', search_term=search_term, results=results, county_filter=county_filter, counties=counties, folium_map=folium_map._repr_html_())
+    return render_template('index.html', search_term=search_term, results=results, county_filter=county_filter, counties=counties, folium_map=folium_map._repr_html_(), high_schools=high_schools)
     
 
 if __name__ == '__main__':
