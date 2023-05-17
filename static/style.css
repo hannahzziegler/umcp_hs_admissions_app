@@ -2,7 +2,7 @@
 
 body {
     display: inline-block;
-    background-color: #F9F7F5;
+    background-color: #FAFAFA;
     width: 100%;
     position: relative;
     min-height: 100%;
@@ -12,24 +12,6 @@ body {
 
 html {
     height: 100vh;
-}
-
-/* NAV */
-
-nav {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #e9edef;
-    width: 100%;
-    color: #3A3B3C;
-}
-
-.navbar-brand {
-    font-family: 'DM Serif Text', serif;
-    color: #192841;
-}
-
-.navbar-toggler {
-    border: 0;
 }
 
 /* SECTIONS */
@@ -86,7 +68,7 @@ img {
     }
 
     h1 {
-        font-family: 'DM Serif Text', serif;
+        font-family: 'Rubik', sans-serif;
         margin-bottom: .3em;
         margin-top: .5em;
         font-size: 3em;
@@ -171,8 +153,8 @@ img {
 }
 
 h1 {
-    font-size: 4.8em;
-    font-family: 'DM Serif Text', serif;
+    font-size: 2.5em;
+    font-family: 'Rubik', sans-serif;
     margin-bottom: .3em;
     margin-top: .5em;
     color: #192841;
@@ -200,28 +182,9 @@ p {
 h2 {
     margin-top: 1em;
     margin-bottom: .5em;
-    font-size: 4em;
-    font-family: 'DM Serif Text', serif;
+    font-size: 1.2em;
+    font-family: 'Rubik', sans-serif;
     color: #192841;
-}
-
-em {
-    color: #1c2e4a
-}
-
-
-h5:hover {
-    color: #375971
-}
-
-.footer-h {
-    color: black;
-    margin-bottom: 1.2em;
-    font-size: 1.5em;
-}
-
-b {
-    color: #6F7F88;
 }
 
 a {
@@ -229,32 +192,14 @@ a {
     color: #192841
 }
 
-.icons {
-    font-size: 30px;
-    margin-bottom: 100px;
-}
-
-.contact_icons {
-    font-size: 15px;
-    color: #192841
-}
-
-.dbk-profile {
-    color: #807978;
-}
-
-.dbk-profile:hover {
-    color: #375971
-}
-
 
 h6 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 300;
 }
 
 h3 {
-    font-family: 'DM Serif Text', serif;
+    font-family: 'Rubik', sans-serif;
     margin-bottom: 1.5em;
     margin-top: .5em;
     color: #375971;
@@ -266,39 +211,17 @@ h3 {
 }
 
 li {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 h5 {
-    font-family: 'DM Serif Text', serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1.2em;
     margin-top: 1.8em;
     color: #6F7F88;
 }
 
 /* TEXT */
-
-footer {
-    font-family: 'DM Serif Text', serif;
-    font-size: .8em;
-    padding: 20px;
-    background-color: #d3dadf;
-    position: absolute;
-    bottom: 0em;
-    width: 100%;
-    margin-top: 1.2em;
-}
-
-.fa {
-    padding: 0 20px 0 0;
-    font-size: 1.2em;
-    text-decoration: none;
-
-}
-
-.fa:hover {
-    color: #375971
-}
 
 .datawrapper {
     max-width: 600px;
