@@ -1,20 +1,33 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&amp;family=Open+Sans:ital,wght@0,400;0,500;0,700;0,800;1,300;1,500;1,600;1,800&amp;display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <h1>University of Maryland Admissions by High School</h1>
         <form method="POST" action="/">
-            <input type="text" name="search_term" placeholder="Enter a Maryland high school">
+            <input type="text" name="search_term" placeholder="Enter a Maryland high school or filter by a county">
+            <select name="county">
+                <option value="">All Counties</option>
+                {% for county in counties %}
+                    <option value="{{ county }}">{{ county }}</option>
+                {% endfor %}
+            </select>
             <button type="submit">Search</button>
         </form>
+        {% if search_term or county_filter %}
+        <h2>Search Results</h2>
         {% if results %}
-        <h2>{{ search_term }}'s application breakdown</h2>
+    {% if search_term or county_filter %}
+        <h2>Search Results</h2>
+    {% endif %}
+    {% for school, admissions in results %}
+        <h3>{{ school }}</h3>
         <table>
             <thead>
                 <tr>
-                    <th>School</th>
                     <th>Year</th>
                     <th>Applied</th>
                     <th>Admitted</th>
@@ -22,19 +35,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for result in results %}
+                {% for admission in admissions %}
                     <tr>
-                        <td>{{ result.school }}</td>
-                        <td>{{ result.year }}</td>
-                        <td>{{ result.applied }}</td>
-                        <td>{{ result.admitted }}</td>
-                        <td>{{ result.acceptance_rate }}</td>
+                        <td>{{ admission.year }}</td>
+                        <td>{{ admission.applied }}</td>
+                        <td>{{ admission.admitted }}</td>
+                        <td>{{ admission.acceptance_rate }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}
-        <p>No search results found.</p>
+    {% endfor %}
+{% else %}
+    <p>No search results found.</p>
+{% endif %}
     {% endif %}
     </body>
 </html>
