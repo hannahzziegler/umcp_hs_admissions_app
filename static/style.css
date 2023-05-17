@@ -207,6 +207,24 @@ h6 {
     font-weight: 300;
 }
 
+#map {
+            height: 500px;
+        }
+
+#map-div {
+    height: 500px;
+}
+
+#map-container {
+    height: 500px;
+    overflow: hidden;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
 h3 {
     font-family: 'Rubik', sans-serif;
     margin-bottom: .5em;
