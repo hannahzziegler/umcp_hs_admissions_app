@@ -5,5 +5,36 @@
     </head>
     <body>
         <h1>University of Maryland Admissions by High School</h1>
+        <form method="POST" action="/">
+            <input type="text" name="search_term" placeholder="Enter a Maryland high school">
+            <button type="submit">Search</button>
+        </form>
+        {% if results %}
+        <h2>{{ search_term }}'s application breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>School</th>
+                    <th>Year</th>
+                    <th>Applied</th>
+                    <th>Admitted</th>
+                    <th>Acceptance Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.school }}</td>
+                        <td>{{ result.year }}</td>
+                        <td>{{ result.applied }}</td>
+                        <td>{{ result.admitted }}</td>
+                        <td>{{ result.acceptance_rate }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No search results found.</p>
+    {% endif %}
     </body>
 </html>
