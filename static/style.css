@@ -9,6 +9,15 @@ body {
     padding: 0 0 10rem 0;
 }
 
+.stylized-table {
+    border-collapse: collapse;
+    margin: 2em, 0, 1em, 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
 
 html {
     height: 100vh;
@@ -200,8 +209,8 @@ h6 {
 
 h3 {
     font-family: 'Rubik', sans-serif;
-    margin-bottom: 1.5em;
-    margin-top: .5em;
+    margin-bottom: .5em;
+    margin-top: 1.5em;
     color: #375971;
     ;
 }
