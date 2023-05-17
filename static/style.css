@@ -205,6 +205,7 @@ a {
 h6 {
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
+    padding-top: 1.2em;
 }
 
 #map {
@@ -244,10 +245,39 @@ li {
 h5 {
     font-family: 'Rubik', sans-serif;
     font-size: 1.2em;
-    margin-top: 1.8em;
+    margin-top: 1.5em;
+    margin-bottom: 1.0em;
     color: #6F7F88;
 }
 
+button {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.2em;
+}
+
+.input_text {
+    font-family: 'Rubik', sans-serif;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+tr {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1em;
+    padding: 2em;
+}
+
+table, th, td {
+    border: 1px solid #c4d3db;
+    border-collapse: collapse;
+  }
+
+table {
+    padding-top: 2em;
+}
+th, td {
+    padding: 15px;
+  }
 /* TEXT */
 
 .datawrapper {
