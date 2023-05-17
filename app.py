@@ -61,6 +61,9 @@ def index():
             
             if not admission_data.empty:
                 admission_row = admission_data.iloc[0]
+                applied = str(admission_row['applied'])
+
+                applied_truncated = str(applied[:-2])
                 
                 folium.CircleMarker(
                     location=[row["lat"], row["lon"]],
@@ -69,7 +72,7 @@ def index():
                     fill=True,
                     fill_color=high_schools_colors[row["classification"]],
                     fill_opacity=0.5,
-                    popup=f"<b>School:</b> {row['school']}<br><b>Applied:</b> {admission_row['applied']}<br><b>Admitted:</b> {admission_row['admitted']}<br><b>Acceptance Rate:</b> {admission_row['acceptance_rate']} <b>County:</b> {row['county']}",
+                    popup=f"<b>School:</b> {row['school']}<br><b>Applied:</b> {applied_truncated}<br><b>Admitted:</b> {admission_row['admitted']}<br><b>Acceptance Rate:</b> {admission_row['acceptance_rate']} <b>County:</b> {row['county']}",
                     max_width=300
                 ).add_to(folium_map)
 
