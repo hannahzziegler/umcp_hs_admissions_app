@@ -6,7 +6,11 @@ body {
     width: 100%;
     position: relative;
     min-height: 100%;
-    padding: 0 0 10rem 0;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    
 }
 
 .stylized-table {
@@ -164,21 +168,20 @@ img {
 h1 {
     font-size: 2.5em;
     font-family: 'Rubik', sans-serif;
-    margin-bottom: .3em;
     margin-top: .5em;
     color: #192841;
 }
 
 h4 {
     font-size: 1.2em;
-    font-family: 'Open Sans', sans-serif;
-    margin-top: 3em;
+    font-family: 'Rubik', sans-serif;
+
     color: #375971;
 }
 
 p {
-    font-size: 1em;
-    font-family: 'Open Sans', sans-serif;
+    font-size: .9em;
+    font-family: 'Rubik', sans-serif;
     color: #3A3B3C;
 }
 
@@ -228,8 +231,8 @@ h6 {
 
 h3 {
     font-family: 'Rubik', sans-serif;
-    margin-bottom: .5em;
-    margin-top: 1.5em;
+    margin-bottom: 1.2em;
+    margin-top: 2em;
     color: #375971;
     ;
 }

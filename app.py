@@ -36,7 +36,7 @@ def index():
     high_schools = pd.read_csv('static/db_hs_umcp.csv')
 
     # folium map basics
-    start_latlon = (38.3, -76.6413)
+    start_latlon = (38.6, -77)
     folium_map = folium.Map(
         location=start_latlon, 
         zoom_start=8,
@@ -67,7 +67,7 @@ def index():
                 
                 folium.CircleMarker(
                     location=[row["lat"], row["lon"]],
-                    radius=4,
+                    radius=3,
                     color=high_schools_colors[row["classification"]],
                     fill=True,
                     fill_color=high_schools_colors[row["classification"]],
@@ -154,6 +154,7 @@ def index():
         search_term = None
         county_filter = None
             # Query database for data based on search term
+
 
     return render_template('index.html', search_term=search_term, results=results, county_filter=county_filter, counties=counties, folium_map=folium_map._repr_html_(), high_schools=high_schools)
     

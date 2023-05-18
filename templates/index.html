@@ -4,14 +4,22 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&amp;family=Open+Sans:ital,wght@0,400;0,500;0,700;0,800;1,300;1,500;1,600;1,800&amp;display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="static/style.css">
     </head>
     <body>
         <main>
-        <h1>University of Maryland Admissions by High School</h1>
-        <h3>Body body body body intro intro intro intro</h3>
-        <p>Body body body body intro intro intro intro</p>
-        <h6>Enter a Maryland high school or filter by a county.</h6>
+        <h1>How many students does your area high school send to the University of Maryland - College Park?</h1>
+        <h3>Use this database to find out how many students from every high school in Maryland applied and were admitted to the state’s flagship institution across the last decade.</h3>
+        <h4>How to use this app:</h4><p>
+            In its earliest iteration of functionality, users can parse through the data on this map and in searchable tables to learn more about the University of Maryland’s application and admittance cycle for every private and public high school in the state. High school-specific data includes figures dating back to the 2013-14 academic year. To learn about a specific county or school’s education landscape and how its students do or do not feed into the University of Maryland’s student body, search a high school name in the search bar or select a list of counties from the dropdown menu below. </p>
+            <p>
+            Once clicking “search,” a display page with tables for each high school within a given county, or for an individual school, will populate the page below the map object. 
+            </p>
+            <h4>About the data:</h4>
+            <p>To be included in this database, a Maryland high school had to have 10 or more students who applied. If less than 10 students from that high school applied in a given academic year, their “applied” status is listed as “NA.” If a school met the qualifications for having more than 10 student applicants, but had less than 10 students admitted, this figure is noted in the database as "< less than 10" for the given academic year.</p>
+
+        <h5>Enter a Maryland high school or filter by a county.</h5>
         <form method="POST" action="/">
             <input type="text" name="search_term" placeholder="Enter a Maryland high school" class="input-text">
             <select name="county" class="input-text">
@@ -28,6 +36,7 @@
                 {{ folium_map | safe }}
             </div>
         </div>
+
         {% if search_term or county_filter %}
         <h2>Search Results for {{ search_term }} {{ county_filter }}</h2>
         {% if results %}
