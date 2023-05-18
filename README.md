@@ -3,8 +3,8 @@ A repository for work on my final project in news apps: an interactive that disp
 
 **Final Project Reflection and Debrief**
 
-_Link to final project GitHub repository: https://github.com/hannahzziegler/umcp_hs_admissions_app 
-_* To run the app, open “app.py” and type “python3 app.py” at the command line prompt
+<em>Link to final project GitHub repository: https://github.com/hannahzziegler/umcp_hs_admissions_app </em>
+* To run the app, open “app.py” and type “python3 app.py” at the command line prompt
 
 Working on this news app tested me in a ton of ways, but I’m ultimately really proud of the project I was able to string together in the end and am mostly looking forward to being able to build off of the work I was able to get done ahead of this deadline. As a disclaimer before I get into the nitty gritty: I did receive high school admissions data from the University of Maryland with information on every country in the state across the last 10 years. As I felt more and more burnt out by working through a less intriguing theme for this project, I decided at the end of last week to pivot as much as I possibly could to incorporate a news app that showed high school admissions data and how different types of schools in the state fed or didn’t feed into its flagship institution.
 
